@@ -103,8 +103,7 @@ class ResultViewModel {
     func cellData(index: Int) -> [String] {
         let short = results[index].fullShortLink?.replacingOccurrences(of: "\\", with: "") ?? ""
         let original = results[index].originalLink?.replacingOccurrences(of: "\\", with: "") ?? ""
-        let code = results[index].code ?? ""
-        return [original,short,code]
+        return [original,short]
     }
     
     func readStore() {
