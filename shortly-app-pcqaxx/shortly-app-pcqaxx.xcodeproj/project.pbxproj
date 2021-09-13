@@ -24,6 +24,7 @@
 		11B1308F26E95A8100A5EA25 /* ResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B1308E26E95A8100A5EA25 /* ResultsTableViewCell.swift */; };
 		11B1309126EA4CDB00A5EA25 /* ShortenResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B1309026EA4CDB00A5EA25 /* ShortenResult.swift */; };
 		11B1309326EA4FFE00A5EA25 /* ResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B1309226EA4FFE00A5EA25 /* ResultViewModel.swift */; };
+		11E34E9526EFD734005652A6 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 11E34E9426EFD734005652A6 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		11B1308E26E95A8100A5EA25 /* ResultsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsTableViewCell.swift; sourceTree = "<group>"; };
 		11B1309026EA4CDB00A5EA25 /* ShortenResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortenResult.swift; sourceTree = "<group>"; };
 		11B1309226EA4FFE00A5EA25 /* ResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewModel.swift; sourceTree = "<group>"; };
+		11E34E9426EFD734005652A6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +138,7 @@
 		11B1306E26E93C2C00A5EA25 /* shortly-app-pcqaxx */ = {
 			isa = PBXGroup;
 			children = (
+				11E34E9426EFD734005652A6 /* README.md */,
 				115066FB26EEB748002EA8F5 /* Network */,
 				11B1308926E93EC900A5EA25 /* ViewModels */,
 				11B1308826E93EC200A5EA25 /* Models */,
@@ -311,6 +314,7 @@
 			files = (
 				11B1307C26E93C2D00A5EA25 /* LaunchScreen.storyboard in Resources */,
 				11B1308526E93C5400A5EA25 /* Colors.xcassets in Resources */,
+				11E34E9526EFD734005652A6 /* README.md in Resources */,
 				11B1307926E93C2D00A5EA25 /* Assets.xcassets in Resources */,
 				11B1307726E93C2C00A5EA25 /* Main.storyboard in Resources */,
 			);
