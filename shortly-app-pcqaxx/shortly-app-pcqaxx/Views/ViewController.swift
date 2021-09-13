@@ -164,7 +164,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         oldCell.copyButton.backgroundColor = UIColor(named: "Cyan")
         oldCell.copyButton.setTitle("COPY", for: .normal)
     }
-    
+    //TODO: -Fix copied button selection on memory. 
     
 }
 
