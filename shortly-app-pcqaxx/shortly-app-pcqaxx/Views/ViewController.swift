@@ -89,6 +89,7 @@ class ViewController: UIViewController {
             viewModel.shortURL(string: urlString ?? "")
             welcomeView.isHidden = true
         }else {
+            inputTextField.text?.removeAll()
             inputTextField.layer.borderWidth = 2.0
             inputTextField.layer.borderColor = UIColor(named: "Red")?.cgColor
             let attributtedPlaceHolderText = NSAttributedString(string: "Please add a link here", attributes:  [NSAttributedString.Key.foregroundColor: UIColor(named: "Red") ?? .red, NSAttributedString.Key.font: UIFont(name: "Poppins-Medium", size: 17) ?? UIFont.boldSystemFont(ofSize: 17)])
@@ -107,6 +108,7 @@ class ViewController: UIViewController {
         resultView.bottomAnchor.constraint(equalTo: backgroundView.topAnchor).isActive = true
         resultView.setup()
         resultView.tableView.dataSource = self
+        resultView.tableView.delegate = self        
         resultView.isHidden = true
     }
     
@@ -152,7 +154,6 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! ResultsTableViewCell
-        cell.setup()
         let options = viewModel.cellData(index: indexPath.row)
         cell.configureCell(original: options[0], shorten: options[1], code: indexPath.row)
         return cell

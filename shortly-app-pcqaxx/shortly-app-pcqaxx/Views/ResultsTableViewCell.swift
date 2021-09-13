@@ -16,14 +16,15 @@ class ResultsTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        setup()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     
-    func setup() {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        debugPrint("cell setup")
         originalLink = UILabel(frame: .zero)
         shortenLink = UILabel(frame: .zero)
         deleteButton = UIButton(frame: .zero)
@@ -41,14 +42,14 @@ class ResultsTableViewCell: UITableViewCell {
         cardView.layer.cornerRadius = 8
         cardView.clipsToBounds = true
         cardView.backgroundColor = .systemBackground
-        addSubview(cardView)
-        cardView.topAnchor.constraint(equalTo: topAnchor, constant: 9).isActive = true
-        cardView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24).isActive = true
-        cardView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24).isActive = true
-        cardView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -9).isActive = true
+        contentView.addSubview(cardView)
+        cardView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 9).isActive = true
+        cardView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24).isActive = true
+        cardView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24).isActive = true
+        cardView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -9).isActive = true
         cardView.layer.borderWidth = 1.0
         cardView.layer.borderColor = UIColor(named: "LightGray")?.cgColor
-        cardView.isUserInteractionEnabled = true        
+        cardView.isUserInteractionEnabled = true
         let separatorView = UIView(frame: .zero)
         separatorView.translatesAutoresizingMaskIntoConstraints = false
         cardView.addSubview(separatorView)
@@ -79,6 +80,7 @@ class ResultsTableViewCell: UITableViewCell {
         deleteButton.heightAnchor.constraint(equalToConstant: 32).isActive = true
         deleteButton.widthAnchor.constraint(equalToConstant: 22).isActive = true
         deleteButton.tintColor = UIColor(named: "GrayishViolet")
+        deleteButton.isUserInteractionEnabled = true
         
         shortenLink.topAnchor.constraint(equalTo: separatorView.bottomAnchor, constant: 9).isActive = true
         shortenLink.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 21).isActive = true
@@ -99,23 +101,31 @@ class ResultsTableViewCell: UITableViewCell {
         copyButton.titleLabel?.font = UIFont(name: "Poppins-Bold", size: 17)
         copyButton.layer.cornerRadius = 4
         copyButton.clipsToBounds = true
+        copyButton.isUserInteractionEnabled = true
+        
         copyButton.addTarget(self, action: #selector(self.copyShortLink(_:)), for: .touchUpInside)
         deleteButton.addTarget(self, action: #selector(self.deleteLink(_:)), for: .touchUpInside)
     }
+    required init?(coder: NSCoder) {
+           fatalError("init(coder:) has not been implemented")
+       }
     
     func configureCell(original: String, shorten: String, code: Int) {
+        debugPrint("cell configure")
         originalLink.text = original
         shortenLink.text = shorten
         deleteButton.tag = code
     }
     
     @IBAction func copyShortLink(_ sender: UIButton) {
+        debugPrint("copied")
         UIPasteboard.general.string = shortenLink.text
         sender.setTitle("COPIED!", for: .normal)
-        sender.backgroundColor = UIColor(named: "GrayishViolet")
+        sender.backgroundColor = UIColor(named: "DarkViolet")
     }
     
     @IBAction func deleteLink(_ sender: UIButton) {
+        debugPrint("delete")
         NotificationCenter.default.post(name: Notification.Name.init("Delete"), object: sender.tag)
     }
 
