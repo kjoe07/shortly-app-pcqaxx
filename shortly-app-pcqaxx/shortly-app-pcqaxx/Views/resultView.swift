@@ -24,6 +24,7 @@ class ResultView: UIView {
         label.topAnchor.constraint(equalTo: topAnchor, constant: 74).isActive = true
         label.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         label.text = "Your Link History"
+        label.font =  UIFont(name: "Poppins-Medium", size: 17)
         tableView = UITableView(frame: .zero)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(tableView)

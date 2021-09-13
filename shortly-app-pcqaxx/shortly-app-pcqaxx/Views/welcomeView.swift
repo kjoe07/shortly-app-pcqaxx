@@ -50,7 +50,5 @@ class WelcomeView: UIView {
         devImage.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         devImage.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         devImage.bottomAnchor.constraint(equalTo: welcomeTitle.topAnchor, constant: -13).isActive = true
-        
     }
-
 }

@@ -43,7 +43,7 @@ class ViewController: UIViewController {
         inputTextField.translatesAutoresizingMaskIntoConstraints = false
         mainButton = UIButton(frame: CGRect(x: 0, y: 0, width: 280, height: 50))
         mainButton.backgroundColor = UIColor(named: "Cyan")
-        mainButton.layer.cornerRadius = 5.0
+        mainButton.layer.cornerRadius = 4   
         mainButton.clipsToBounds = true
         mainButton.setTitle("SHORTEN IT!", for: .normal)
         mainButton.translatesAutoresizingMaskIntoConstraints = false
@@ -53,7 +53,7 @@ class ViewController: UIViewController {
         inputTextField.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor, constant: 47).isActive = true
         inputTextField.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor, constant: -47).isActive = true
         inputTextField.heightAnchor.constraint(equalTo: mainButton.heightAnchor).isActive = true
-        inputTextField.layer.cornerRadius = 5
+        inputTextField.layer.cornerRadius = 4
         inputTextField.clipsToBounds = true
         inputTextField.font = UIFont(name: "Poppins-Medium", size: 17)
         mainButton.topAnchor.constraint(equalTo: inputTextField.bottomAnchor, constant: 9).isActive = true
@@ -87,7 +87,11 @@ class ViewController: UIViewController {
             welcomeView.isHidden = true
         }else {
             //FIXME: - Change to border color and PlaceHolder Color 
-            showAlert(message: "invalid Url string")
+            //showAlert(message: "invalid Url string")
+            inputTextField.layer.borderWidth = 2.0
+            inputTextField.layer.borderColor = UIColor(named: "Red")?.cgColor
+            let attributtedPlaceHolderText = NSAttributedString(string: "Please add a link here", attributes:  [NSAttributedString.Key.foregroundColor: UIColor(named: "Red") ?? .red, NSAttributedString.Key.font: UIFont(name: "Poppins-Medium", size: 17) ?? UIFont.boldSystemFont(ofSize: 17)])
+            inputTextField.attributedPlaceholder = attributtedPlaceHolderText
         }
     }
     
@@ -110,6 +114,10 @@ class ViewController: UIViewController {
         resultView.isHidden = false
         resultView.tableView.reloadData()
         inputTextField.text = ""
+        inputTextField.layer.borderWidth = 0
+        inputTextField.layer.borderColor = UIColor(named: "Red")?.cgColor
+        let attributtedPlaceHolderText = NSAttributedString(string: "Shorten a link here ...", attributes:  [NSAttributedString.Key.foregroundColor: UIColor(named: "LightGray") ?? .red, NSAttributedString.Key.font: UIFont(name: "Poppins-Medium", size: 17) ?? UIFont.boldSystemFont(ofSize: 17)])
+        inputTextField.attributedPlaceholder = attributtedPlaceHolderText
     }
     
     func showAlert(message: String){
