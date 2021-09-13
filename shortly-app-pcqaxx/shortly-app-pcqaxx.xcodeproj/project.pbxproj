@@ -11,6 +11,7 @@
 		1150670026EED9E6002EA8F5 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 115066FF26EED9E6002EA8F5 /* IQKeyboardManagerSwift */; };
 		117FFC1226EEA06D00ADC9F3 /* ShortUrl.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 117FFC1026EEA06D00ADC9F3 /* ShortUrl.xcdatamodeld */; };
 		119F676926EF862200BD81DB /* ResultViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119F676826EF862200BD81DB /* ResultViewModelTest.swift */; };
+		119F676C26EFAB6400BD81DB /* ActivityIndicator in Frameworks */ = {isa = PBXBuildFile; productRef = 119F676B26EFAB6400BD81DB /* ActivityIndicator */; };
 		11B1307026E93C2C00A5EA25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B1306F26E93C2C00A5EA25 /* AppDelegate.swift */; };
 		11B1307226E93C2C00A5EA25 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B1307126E93C2C00A5EA25 /* SceneDelegate.swift */; };
 		11B1307426E93C2C00A5EA25 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B1307326E93C2C00A5EA25 /* ViewController.swift */; };
@@ -71,6 +72,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1150670026EED9E6002EA8F5 /* IQKeyboardManagerSwift in Frameworks */,
+				119F676C26EFAB6400BD81DB /* ActivityIndicator in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,6 +213,7 @@
 			name = "shortly-app-pcqaxx";
 			packageProductDependencies = (
 				115066FF26EED9E6002EA8F5 /* IQKeyboardManagerSwift */,
+				119F676B26EFAB6400BD81DB /* ActivityIndicator */,
 			);
 			productName = "shortly-app-pcqaxx";
 			productReference = 11B1306C26E93C2C00A5EA25 /* shortly-app-pcqaxx.app */;
@@ -246,6 +249,7 @@
 			mainGroup = 11B1306326E93C2C00A5EA25;
 			packageReferences = (
 				115066FE26EED9E6002EA8F5 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+				119F676A26EFAB6400BD81DB /* XCRemoteSwiftPackageReference "ActivityIndicator" */,
 			);
 			productRefGroup = 11B1306D26E93C2C00A5EA25 /* Products */;
 			projectDirPath = "";
@@ -574,6 +578,14 @@
 				minimumVersion = 6.5.6;
 			};
 		};
+		119F676A26EFAB6400BD81DB /* XCRemoteSwiftPackageReference "ActivityIndicator" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kjoe07/ActivityIndicator.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -581,6 +593,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 115066FE26EED9E6002EA8F5 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
 			productName = IQKeyboardManagerSwift;
+		};
+		119F676B26EFAB6400BD81DB /* ActivityIndicator */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 119F676A26EFAB6400BD81DB /* XCRemoteSwiftPackageReference "ActivityIndicator" */;
+			productName = ActivityIndicator;
 		};
 /* End XCSwiftPackageProductDependency section */
 
