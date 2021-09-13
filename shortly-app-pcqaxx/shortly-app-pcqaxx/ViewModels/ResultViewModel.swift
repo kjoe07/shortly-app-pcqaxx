@@ -13,7 +13,7 @@ class ResultViewModel {
     private var managedObjectContext: NSManagedObjectContext?
     
     private lazy var persistentContainer: NSPersistentContainer = {
-        NSPersistentContainer(name: "Short")
+        NSPersistentContainer(name: "ShortUrl")
     }()
     
     init(networkLoader: NetworkLoader) {
@@ -77,7 +77,7 @@ class ResultViewModel {
             try managedObjectContext.save()
         
         } catch {
-            print("Unable to Save Book, \(error)")
+            print("Unable to Save, \(error)")
         }
     }
     

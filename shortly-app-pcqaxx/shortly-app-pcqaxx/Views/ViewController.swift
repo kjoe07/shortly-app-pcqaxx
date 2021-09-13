@@ -73,6 +73,7 @@ class ViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(self.invalidCall(notification:)) , name: Notification.Name.init("InvalidCall"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.NetworkError) , name: Notification.Name.init("NetworkError"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.urlRequestError) , name: Notification.Name.init("invalidURL"), object: nil)
+        mainButton.addTarget(self, action: #selector(self.mainButtonAction(_:)), for: .touchUpInside)
     }
 
     @objc func mainButtonAction(_ sender: UIButton) {
