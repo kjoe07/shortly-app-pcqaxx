@@ -55,10 +55,12 @@ class ViewController: UIViewController {
         inputTextField.heightAnchor.constraint(equalTo: mainButton.heightAnchor).isActive = true
         inputTextField.layer.cornerRadius = 5
         inputTextField.clipsToBounds = true
+        inputTextField.font = UIFont(name: "Poppins-Medium", size: 17)
         mainButton.topAnchor.constraint(equalTo: inputTextField.bottomAnchor, constant: 9).isActive = true
         mainButton.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor, constant: 47).isActive = true
         mainButton.trailingAnchor.constraint(equalTo: inputTextField.trailingAnchor).isActive = true
         mainButton.bottomAnchor.constraint(equalTo: backgroundView.bottomAnchor, constant: -50).isActive = true
+        mainButton.titleLabel?.font = UIFont(name: "Poppins-Bold", size: 20) ?? UIFont.boldSystemFont(ofSize: 20)
         welcomeView = WelcomeView(frame: .zero)
         welcomeView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(welcomeView)
@@ -78,11 +80,13 @@ class ViewController: UIViewController {
 
     @objc func mainButtonAction(_ sender: UIButton) {
         let urlString = inputTextField.text
+        
         if viewModel.validateUrl(urlString: urlString) {
             self.showActivityIndicator(color: UIColor(named: "Cyan") ?? .blue)
             viewModel.shortURL(string: urlString ?? "")
             welcomeView.isHidden = true
         }else {
+            //FIXME: - Change to border color and PlaceHolder Color 
             showAlert(message: "invalid Url string")
         }
     }

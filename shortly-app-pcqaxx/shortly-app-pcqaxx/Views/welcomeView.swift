@@ -28,7 +28,8 @@ class WelcomeView: UIView {
         addSubview(devImage)
         let welcomeDescription = UILabel(frame: .zero)
         welcomeDescription.translatesAutoresizingMaskIntoConstraints = false
-        welcomeDescription.numberOfLines = 2
+        welcomeDescription.font = UIFont(name: "Poppins-Medium", size: 17)
+        welcomeDescription.numberOfLines = 0
         welcomeDescription.lineBreakMode = .byWordWrapping
         welcomeDescription.text = "Paste your first link into the field to shorten it"
         welcomeDescription.textAlignment = .center
@@ -43,6 +44,7 @@ class WelcomeView: UIView {
         welcomeTitle.bottomAnchor.constraint(equalTo: welcomeDescription.topAnchor, constant: -7).isActive = true
         welcomeTitle.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         welcomeTitle.text = "let's get started!"
+        welcomeTitle.font = UIFont(name: "Poppins-Bold", size: 20)
         welcomeTitle.textAlignment = .center
         welcomeTitle.font = UIFont.boldSystemFont(ofSize: 24)
         devImage.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
