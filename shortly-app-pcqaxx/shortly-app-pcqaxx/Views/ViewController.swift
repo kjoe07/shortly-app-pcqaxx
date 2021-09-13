@@ -136,6 +136,7 @@ extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! ResultsTableViewCell
+        cell.setup()
         let options = viewModel.cellData(index: indexPath.row)
         cell.configureCell(original: options[0], shorten: options[1], index: indexPath)
         return cell
