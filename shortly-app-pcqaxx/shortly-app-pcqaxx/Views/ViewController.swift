@@ -41,6 +41,10 @@ class ViewController: UIViewController {
         inputTextField.placeholder = "Shorten a link here ..."
         inputTextField.textAlignment = .center
         inputTextField.translatesAutoresizingMaskIntoConstraints = false
+        inputTextField.keyboardType = .URL
+        inputTextField.autocorrectionType = .no
+        inputTextField.autocapitalizationType = .none
+        inputTextField.textContentType = .URL
         mainButton = UIButton(frame: CGRect(x: 0, y: 0, width: 280, height: 50))
         mainButton.backgroundColor = UIColor(named: "Cyan")
         mainButton.layer.cornerRadius = 4   
@@ -80,14 +84,11 @@ class ViewController: UIViewController {
 
     @objc func mainButtonAction(_ sender: UIButton) {
         let urlString = inputTextField.text
-        
         if viewModel.validateUrl(urlString: urlString) {
             self.showActivityIndicator(color: UIColor(named: "Cyan") ?? .blue)
             viewModel.shortURL(string: urlString ?? "")
             welcomeView.isHidden = true
         }else {
-            //FIXME: - Change to border color and PlaceHolder Color 
-            //showAlert(message: "invalid Url string")
             inputTextField.layer.borderWidth = 2.0
             inputTextField.layer.borderColor = UIColor(named: "Red")?.cgColor
             let attributtedPlaceHolderText = NSAttributedString(string: "Please add a link here", attributes:  [NSAttributedString.Key.foregroundColor: UIColor(named: "Red") ?? .red, NSAttributedString.Key.font: UIFont(name: "Poppins-Medium", size: 17) ?? UIFont.boldSystemFont(ofSize: 17)])

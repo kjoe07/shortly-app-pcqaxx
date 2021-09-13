@@ -110,7 +110,7 @@ class ResultsTableViewCell: UITableViewCell {
     }
     
     @IBAction func copyShortLink(_ sender: UIButton) {
-        UIPasteboard.general.string = sender.title(for: .normal)
+        UIPasteboard.general.string = shortenLink.text
         sender.setTitle("COPIED!", for: .normal)
         sender.backgroundColor = UIColor(named: "GrayishViolet")
     }
