@@ -33,8 +33,7 @@ class ResultView: UIView {
         tableView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -42).isActive = true
         tableView.separatorStyle = .none
         tableView.register(ResultsTableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.allowsSelection = false
+        isUserInteractionEnabled = true
     }
-    
-    
-
 }

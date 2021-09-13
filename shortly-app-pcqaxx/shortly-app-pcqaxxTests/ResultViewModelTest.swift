@@ -20,7 +20,7 @@ class ResultViewModelTest: XCTestCase {
     }
 
     func test_validURlIWithHttptisTrue() {
-        let urlString = "http://bpa.cu/example"
+        let urlString = "http://finances.wikipedia.org/wiki/Fox_Broadcasting_Company"
         let result = sut.validateUrl(urlString: urlString)
         XCTAssertTrue(result)
     }

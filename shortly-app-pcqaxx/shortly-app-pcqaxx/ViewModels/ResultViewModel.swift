@@ -21,11 +21,12 @@ class ResultViewModel {
         NotificationCenter.default.addObserver(forName: .NSManagedObjectContextDidSave, object: persistentContainer.viewContext, queue: .main) { [weak self] _ in
             self?.fetchLinks()
         }
+        NotificationCenter.default.addObserver(self, selector: #selector(self.deleteLink(_:)), name: Notification.Name.init("Delete"), object: nil)
         readStore()
     }
     
     func validateUrl (urlString: String?) -> Bool {
-        let urlRegEx = "((?:http|https)://)?(?:www\\.)?[\\w\\d\\-_]+\\.\\w{2,3}(\\.\\w{2})?(/(?<=/)(?:[\\w\\d\\-./_]+)?)?"
+        let urlRegEx = "((?:http|https)://)?(?:\\w{1,9}\\.)?(?:\\w{1,9}\\.)?[\\w\\d\\-_]+\\.\\w{2,3}(\\.\\w{2})?(/(?<=/)(?:[\\w\\d\\-./_]+)?)?"
         return NSPredicate(format: "SELF MATCHES %@", urlRegEx).evaluate(with: urlString)
     }
     
@@ -115,6 +116,19 @@ class ResultViewModel {
             } else {
                 self?.fetchLinks()
             }
+        }
+    }
+    
+    @objc func deleteLink(_ notification: Notification) {
+        let index = notification.object as! Int
+        persistentContainer.viewContext.delete(results[index] as NSManagedObject)
+        results.remove(at: index)
+        
+        let _ : NSError! = nil
+        do {
+            try  persistentContainer.viewContext.save()
+        } catch {
+            print("error : \(error)")
         }
     }
 }

@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import ActivityIndicator
 class ViewController: UIViewController {
     var backgroundView: UIView!
     var inputTextField: UITextField!
@@ -79,6 +79,7 @@ class ViewController: UIViewController {
     @objc func mainButtonAction(_ sender: UIButton) {
         let urlString = inputTextField.text
         if viewModel.validateUrl(urlString: urlString) {
+            self.showActivityIndicator(color: UIColor(named: "Cyan") ?? .blue)
             viewModel.shortURL(string: urlString ?? "")
             welcomeView.isHidden = true
         }else {
@@ -101,8 +102,10 @@ class ViewController: UIViewController {
     }
     
     @objc func updateResultView() {
+        self.hideActivityIndicator()
         resultView.isHidden = false
         resultView.tableView.reloadData()
+        inputTextField.text = ""
     }
     
     func showAlert(message: String){
@@ -129,7 +132,7 @@ class ViewController: UIViewController {
     }
 
 }
-extension ViewController: UITableViewDataSource {
+extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfRows()
     }
@@ -138,8 +141,14 @@ extension ViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! ResultsTableViewCell
         cell.setup()
         let options = viewModel.cellData(index: indexPath.row)
-        cell.configureCell(original: options[0], shorten: options[1], index: indexPath)
+        cell.configureCell(original: options[0], shorten: options[1], code: indexPath.row)
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let oldCell = cell as? ResultsTableViewCell else {return}
+        oldCell.copyButton.backgroundColor = UIColor(named: "Cyan")
+        oldCell.copyButton.setTitle("COPY", for: .normal)
     }
     
     

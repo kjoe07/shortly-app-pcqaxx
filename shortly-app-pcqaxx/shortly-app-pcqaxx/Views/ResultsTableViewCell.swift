@@ -12,6 +12,7 @@ class ResultsTableViewCell: UITableViewCell {
     var shortenLink: UILabel!
     var deleteButton: UIButton!
     var copyButton: UIButton!
+    var code: String = ""
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -32,6 +33,8 @@ class ResultsTableViewCell: UITableViewCell {
         shortenLink.translatesAutoresizingMaskIntoConstraints = false
         deleteButton.translatesAutoresizingMaskIntoConstraints = false
         copyButton.translatesAutoresizingMaskIntoConstraints = false
+        deleteButton.isUserInteractionEnabled = true
+        copyButton.isUserInteractionEnabled = true
         
         let cardView = UIView(frame: .zero)
         cardView.translatesAutoresizingMaskIntoConstraints = false
@@ -45,6 +48,7 @@ class ResultsTableViewCell: UITableViewCell {
         cardView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -9).isActive = true
         cardView.layer.borderWidth = 1.0
         cardView.layer.borderColor = UIColor(named: "Off-White")?.cgColor
+        cardView.isUserInteractionEnabled = true        
         let separatorView = UIView(frame: .zero)
         separatorView.translatesAutoresizingMaskIntoConstraints = false
         cardView.addSubview(separatorView)
@@ -92,13 +96,13 @@ class ResultsTableViewCell: UITableViewCell {
         copyButton.layer.cornerRadius = 5
         copyButton.clipsToBounds = true
         copyButton.addTarget(self, action: #selector(self.copyShortLink(_:)), for: .touchUpInside)
+        deleteButton.addTarget(self, action: #selector(self.deleteLink(_:)), for: .touchUpInside)
     }
     
-    func configureCell(original: String, shorten: String, index: IndexPath) {
+    func configureCell(original: String, shorten: String, code: Int) {
         originalLink.text = original
         shortenLink.text = shorten
-        copyButton.tag = index.row
-        deleteButton.tag = index.row
+        deleteButton.tag = code
     }
     
     @IBAction func copyShortLink(_ sender: UIButton) {
@@ -108,7 +112,7 @@ class ResultsTableViewCell: UITableViewCell {
     }
     
     @IBAction func deleteLink(_ sender: UIButton) {
-        
+        NotificationCenter.default.post(name: Notification.Name.init("Delete"), object: sender.tag)
     }
 
 }
