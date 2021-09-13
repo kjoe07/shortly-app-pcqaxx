@@ -31,36 +31,36 @@ struct ShortenResponse : Codable {
 }
 struct ShortenResult : Codable {
     let code : String?
-    let short_link : String?
-    let full_short_link : String?
-    let short_link2 : String?
-    let full_short_link2 : String?
-    let share_link : String?
-    let full_share_link : String?
-    let original_link : String?
+    let shortLink : String?
+    let fullShortLink : String?
+    let shortLink2 : String?
+    let fullShortLink2 : String?
+    let shareLink : String?
+    let fullShareLink : String?
+    let originalLink : String?
 
     enum CodingKeys: String, CodingKey {
 
         case code = "code"
-        case short_link = "short_link"
-        case full_short_link = "full_short_link"
-        case short_link2 = "short_link2"
-        case full_short_link2 = "full_short_link2"
-        case share_link = "share_link"
-        case full_share_link = "full_share_link"
-        case original_link = "original_link"
+        case shortLink = "short_link"
+        case fullShortLink = "full_short_link"
+        case shortLink2 = "short_link2"
+        case fullShortLink2 = "full_short_link2"
+        case shareLink = "share_link"
+        case fullShareLink = "full_share_link"
+        case originalLink = "original_link"
     }
 
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         code = try values.decodeIfPresent(String.self, forKey: .code)
-        short_link = try values.decodeIfPresent(String.self, forKey: .short_link)
-        full_short_link = try values.decodeIfPresent(String.self, forKey: .full_short_link)
-        short_link2 = try values.decodeIfPresent(String.self, forKey: .short_link2)
-        full_short_link2 = try values.decodeIfPresent(String.self, forKey: .full_short_link2)
-        share_link = try values.decodeIfPresent(String.self, forKey: .share_link)
-        full_share_link = try values.decodeIfPresent(String.self, forKey: .full_share_link)
-        original_link = try values.decodeIfPresent(String.self, forKey: .original_link)
+        shortLink = try values.decodeIfPresent(String.self, forKey: .shortLink)
+        fullShortLink = try values.decodeIfPresent(String.self, forKey: .fullShortLink)
+        shortLink2 = try values.decodeIfPresent(String.self, forKey: .shortLink2)
+        fullShortLink2 = try values.decodeIfPresent(String.self, forKey: .fullShortLink2)
+        shareLink = try values.decodeIfPresent(String.self, forKey: .shareLink)
+        fullShareLink = try values.decodeIfPresent(String.self, forKey: .fullShareLink)
+        originalLink = try values.decodeIfPresent(String.self, forKey: .originalLink)
     }
 
 }

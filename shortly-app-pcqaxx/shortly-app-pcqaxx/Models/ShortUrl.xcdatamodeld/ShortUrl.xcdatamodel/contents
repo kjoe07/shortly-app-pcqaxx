@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20G80" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="ShortUrl" representedClassName="ShortUrl" syncable="YES" codeGenerationType="class">
+        <attribute name="code" attributeType="String"/>
+        <attribute name="fullShareLink" optional="YES" attributeType="String"/>
+        <attribute name="fullShortLink" optional="YES" attributeType="String"/>
+        <attribute name="fullShortLink2" attributeType="String"/>
+        <attribute name="originalLink" attributeType="String"/>
+        <attribute name="shareLink" attributeType="String"/>
+        <attribute name="shortLink2" attributeType="String"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="code"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <elements>
+        <element name="ShortUrl" positionX="-63" positionY="-18" width="128" height="134"/>
+    </elements>
+</model>

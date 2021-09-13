@@ -12,7 +12,8 @@ class ViewController: UIViewController {
     var inputTextField: UITextField!
     var mainButton: UIButton!
     var welcomeView: WelcomeView!
-    
+    var viewModel: ResultViewModel!
+    var resultView: ResultView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,22 +67,76 @@ class ViewController: UIViewController {
         welcomeView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         welcomeView.bottomAnchor.constraint(equalTo: backgroundView.topAnchor).isActive = true
         welcomeView.setup()
-        
+        setupResultView()
+        viewModel = ResultViewModel(networkLoader: NetworkLoader(session: URLSession.shared))
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateResultView) , name: Notification.Name.init("DataUpdated"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.invalidCall(notification:)) , name: Notification.Name.init("InvalidCall"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.NetworkError) , name: Notification.Name.init("NetworkError"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.urlRequestError) , name: Notification.Name.init("invalidURL"), object: nil)
     }
 
-    
     @objc func mainButtonAction(_ sender: UIButton) {
+        let urlString = inputTextField.text
+        if viewModel.validateUrl(urlString: urlString) {
+            viewModel.shortURL(string: urlString ?? "")
+        }else {
+            showAlert(message: "invalid Url string")
+        }
+    }
+    
+    func setupResultView() {
+        welcomeView = nil
+        resultView = ResultView(frame: .zero)
+        resultView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(resultView)
+        resultView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        resultView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        resultView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        resultView.bottomAnchor.constraint(equalTo: backgroundView.topAnchor).isActive = true
+        resultView.setup()
+        resultView.tableView.dataSource = self
+        resultView.isHidden = true
+    }
+    
+    @objc func updateResultView() {
+        resultView.isHidden = false
+        resultView.tableView.reloadData()
+    }
+    
+    func showAlert(message: String){
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "Ok", style: .destructive, handler: nil)
+        alert.addAction(action)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
         
+    }
+    @objc func NetworkError() {
+        showAlert(message: "Network error")
+    }
+    @objc func urlRequestError() {
+        showAlert(message: "Failed to create urlRequest")
+    }
+    @objc func invalidCall(notification: Notification) {
+        let object = notification.object as! ShortenResponse
+        showAlert(message: object.error ?? "")
+    }
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 
 }
 extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        <#code#>
+        return viewModel.numberOfRows()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! ResultsTableViewCell
+        let options = viewModel.cellData(index: indexPath.row)
+        cell.configureCell(original: options[0], shorten: options[1], index: indexPath)
+        return cell
     }
     
     

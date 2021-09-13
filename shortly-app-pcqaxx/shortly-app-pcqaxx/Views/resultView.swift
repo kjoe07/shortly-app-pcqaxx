@@ -7,7 +7,7 @@
 
 import UIKit
 
-class resultView: UIView {
+class ResultView: UIView {
     var tableView: UITableView!
 
     /*
@@ -32,5 +32,7 @@ class resultView: UIView {
         tableView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: bottomAnchor, constant:42).isActive = true
     }
+    
+    
 
 }
