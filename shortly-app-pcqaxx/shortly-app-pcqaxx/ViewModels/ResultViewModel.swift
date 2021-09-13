@@ -10,8 +10,8 @@ import CoreData
 class ResultViewModel {
     private var results: [ShortUrl] = []
     private var networkLoader: NetworkLoader
-    private var managedObjectContext: NSManagedObjectContext?
-    
+    internal let newUrlString = "https://api.shrtco.de/v2/shorten?url="
+    private var shouldUpdate = false
     private lazy var persistentContainer: NSPersistentContainer = {
         NSPersistentContainer(name: "ShortUrl")
     }()
@@ -21,21 +21,24 @@ class ResultViewModel {
         NotificationCenter.default.addObserver(forName: .NSManagedObjectContextDidSave, object: persistentContainer.viewContext, queue: .main) { [weak self] _ in
             self?.fetchLinks()
         }
+        readStore()
     }
     
     func validateUrl (urlString: String?) -> Bool {
-        let urlRegEx = "(http|https)://((\\w)*|([0-9]*)|([-|_])*)+([\\.|/]((\\w)*|([0-9]*)|([-|_])*))+"
+        let urlRegEx = "((?:http|https)://)?(?:www\\.)?[\\w\\d\\-_]+\\.\\w{2,3}(\\.\\w{2})?(/(?<=/)(?:[\\w\\d\\-./_]+)?)?"
         return NSPredicate(format: "SELF MATCHES %@", urlRegEx).evaluate(with: urlString)
     }
     
     func shortURL(string: String) {
         do {
-            let request = try createURLRequest(string: string)
+            let fullURlString = "\(newUrlString)\(string)"
+            let request = try createURLRequest(string: fullURlString)
             networkLoader.loadData(request: request, completion: {[weak self] result in
                 switch result {
                 case .success(let data):
                     if data.error == nil {
                         guard let resultData = data.result else { return }
+                        self?.shouldUpdate = true
                         self?.saveURL(shortenUrl: resultData)
                     }else {
                         NotificationCenter.default.post(name: Notification.Name.init("InvalidCall"), object: result)
@@ -60,11 +63,7 @@ class ResultViewModel {
     }
     
     func saveURL(shortenUrl: ShortenResult) {
-        guard let managedObjectContext = managedObjectContext else {
-            fatalError("No Managed Object Context Available")
-        }
-        
-        let url = ShortUrl(context: managedObjectContext)
+        let url = ShortUrl(context: persistentContainer.viewContext)
         url.code = shortenUrl.code
         url.fullShareLink = shortenUrl.fullShareLink
         url.fullShortLink = shortenUrl.fullShortLink
@@ -74,7 +73,7 @@ class ResultViewModel {
         url.shortLink2 = shortenUrl.shortLink2
         
         do {
-            try managedObjectContext.save()
+            try persistentContainer.viewContext.save()
         
         } catch {
             print("Unable to Save, \(error)")
@@ -87,8 +86,11 @@ class ResultViewModel {
         persistentContainer.viewContext.perform { [weak self] in
             guard let self = self else {return}
             do {
+                print("fetch done")
                 self.results = try fetchRequest.execute()
-                NotificationCenter.default.post(name: Notification.Name.init("DataUpdated"), object: nil)
+                if self.shouldUpdate {
+                    NotificationCenter.default.post(name: Notification.Name.init("DataUpdated"), object: nil)
+                }
             } catch {
                 print("Unable to Execute Fetch Request, \(error)")
             }
@@ -102,5 +104,17 @@ class ResultViewModel {
         let original = results[index].originalLink?.replacingOccurrences(of: "\\", with: "") ?? ""
         let code = results[index].code ?? ""
         return [original,short,code]
+    }
+    
+    func readStore() {
+        persistentContainer.loadPersistentStores { [weak self] persistentStoreDescription, error in
+            if let error = error {
+                print("Unable to Add Persistent Store")
+                print("\(error), \(error.localizedDescription)")
+                
+            } else {
+                self?.fetchLinks()
+            }
+        }
     }
 }

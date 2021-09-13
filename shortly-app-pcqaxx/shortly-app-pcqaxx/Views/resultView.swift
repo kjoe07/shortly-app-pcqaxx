@@ -31,6 +31,8 @@ class ResultView: UIView {
         tableView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         tableView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: bottomAnchor, constant:42).isActive = true
+        tableView.separatorStyle = .none
+        tableView.register(ResultsTableViewCell.self, forCellReuseIdentifier: "cell")
     }
     
     

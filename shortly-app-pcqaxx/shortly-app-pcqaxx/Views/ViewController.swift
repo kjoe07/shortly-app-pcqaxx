@@ -80,13 +80,14 @@ class ViewController: UIViewController {
         let urlString = inputTextField.text
         if viewModel.validateUrl(urlString: urlString) {
             viewModel.shortURL(string: urlString ?? "")
+            welcomeView.isHidden = true
         }else {
             showAlert(message: "invalid Url string")
         }
     }
     
     func setupResultView() {
-        welcomeView = nil
+       // welcomeView = nil
         resultView = ResultView(frame: .zero)
         resultView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(resultView)

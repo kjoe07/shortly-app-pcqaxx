@@ -10,6 +10,7 @@
 		115066FD26EEB75B002EA8F5 /* NetworkLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115066FC26EEB75B002EA8F5 /* NetworkLoader.swift */; };
 		1150670026EED9E6002EA8F5 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 115066FF26EED9E6002EA8F5 /* IQKeyboardManagerSwift */; };
 		117FFC1226EEA06D00ADC9F3 /* ShortUrl.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 117FFC1026EEA06D00ADC9F3 /* ShortUrl.xcdatamodeld */; };
+		119F676926EF862200BD81DB /* ResultViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119F676826EF862200BD81DB /* ResultViewModelTest.swift */; };
 		11B1307026E93C2C00A5EA25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B1306F26E93C2C00A5EA25 /* AppDelegate.swift */; };
 		11B1307226E93C2C00A5EA25 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B1307126E93C2C00A5EA25 /* SceneDelegate.swift */; };
 		11B1307426E93C2C00A5EA25 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B1307326E93C2C00A5EA25 /* ViewController.swift */; };
@@ -24,9 +25,23 @@
 		11B1309326EA4FFE00A5EA25 /* ResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B1309226EA4FFE00A5EA25 /* ResultViewModel.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		119F676226EF85E400BD81DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 11B1306426E93C2C00A5EA25 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 11B1306B26E93C2C00A5EA25;
+			remoteInfo = "shortly-app-pcqaxx";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		115066FC26EEB75B002EA8F5 /* NetworkLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLoader.swift; sourceTree = "<group>"; };
 		117FFC1126EEA06D00ADC9F3 /* ShortUrl.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ShortUrl.xcdatamodel; sourceTree = "<group>"; };
+		119F675D26EF85E400BD81DB /* shortly-app-pcqaxxTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "shortly-app-pcqaxxTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		119F676126EF85E400BD81DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		119F676726EF862200BD81DB /* shortly-app-pcqaxxTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "shortly-app-pcqaxxTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		119F676826EF862200BD81DB /* ResultViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewModelTest.swift; sourceTree = "<group>"; };
 		11B1306C26E93C2C00A5EA25 /* shortly-app-pcqaxx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "shortly-app-pcqaxx.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		11B1306F26E93C2C00A5EA25 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11B1307126E93C2C00A5EA25 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -44,6 +59,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		119F675A26EF85E400BD81DB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		11B1306926E93C2C00A5EA25 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -63,10 +85,21 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		119F675E26EF85E400BD81DB /* shortly-app-pcqaxxTests */ = {
+			isa = PBXGroup;
+			children = (
+				119F676126EF85E400BD81DB /* Info.plist */,
+				119F676826EF862200BD81DB /* ResultViewModelTest.swift */,
+				119F676726EF862200BD81DB /* shortly-app-pcqaxxTests-Bridging-Header.h */,
+			);
+			path = "shortly-app-pcqaxxTests";
+			sourceTree = "<group>";
+		};
 		11B1306326E93C2C00A5EA25 = {
 			isa = PBXGroup;
 			children = (
 				11B1306E26E93C2C00A5EA25 /* shortly-app-pcqaxx */,
+				119F675E26EF85E400BD81DB /* shortly-app-pcqaxxTests */,
 				11B1306D26E93C2C00A5EA25 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -75,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				11B1306C26E93C2C00A5EA25 /* shortly-app-pcqaxx.app */,
+				119F675D26EF85E400BD81DB /* shortly-app-pcqaxxTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -144,6 +178,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		119F675C26EF85E400BD81DB /* shortly-app-pcqaxxTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 119F676626EF85E400BD81DB /* Build configuration list for PBXNativeTarget "shortly-app-pcqaxxTests" */;
+			buildPhases = (
+				119F675926EF85E400BD81DB /* Sources */,
+				119F675A26EF85E400BD81DB /* Frameworks */,
+				119F675B26EF85E400BD81DB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				119F676326EF85E400BD81DB /* PBXTargetDependency */,
+			);
+			name = "shortly-app-pcqaxxTests";
+			productName = "shortly-app-pcqaxxTests";
+			productReference = 119F675D26EF85E400BD81DB /* shortly-app-pcqaxxTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		11B1306B26E93C2C00A5EA25 /* shortly-app-pcqaxx */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 11B1308026E93C2D00A5EA25 /* Build configuration list for PBXNativeTarget "shortly-app-pcqaxx" */;
@@ -173,6 +225,11 @@
 				LastSwiftUpdateCheck = 1250;
 				LastUpgradeCheck = 1250;
 				TargetAttributes = {
+					119F675C26EF85E400BD81DB = {
+						CreatedOnToolsVersion = 12.5.1;
+						LastSwiftMigration = 1250;
+						TestTargetID = 11B1306B26E93C2C00A5EA25;
+					};
 					11B1306B26E93C2C00A5EA25 = {
 						CreatedOnToolsVersion = 12.5.1;
 					};
@@ -195,11 +252,19 @@
 			projectRoot = "";
 			targets = (
 				11B1306B26E93C2C00A5EA25 /* shortly-app-pcqaxx */,
+				119F675C26EF85E400BD81DB /* shortly-app-pcqaxxTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		119F675B26EF85E400BD81DB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		11B1306A26E93C2C00A5EA25 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -214,6 +279,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		119F675926EF85E400BD81DB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				119F676926EF862200BD81DB /* ResultViewModelTest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		11B1306826E93C2C00A5EA25 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -232,6 +305,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		119F676326EF85E400BD81DB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 11B1306B26E93C2C00A5EA25 /* shortly-app-pcqaxx */;
+			targetProxy = 119F676226EF85E400BD81DB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		11B1307526E93C2C00A5EA25 /* Main.storyboard */ = {
@@ -253,6 +334,51 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		119F676426EF85E400BD81DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZS8BG3AB6Y;
+				INFOPLIST_FILE = "shortly-app-pcqaxxTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kjoe.shortly-app-pcqaxxTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "shortly-app-pcqaxxTests/shortly-app-pcqaxxTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/shortly-app-pcqaxx.app/shortly-app-pcqaxx";
+			};
+			name = Debug;
+		};
+		119F676526EF85E400BD81DB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZS8BG3AB6Y;
+				INFOPLIST_FILE = "shortly-app-pcqaxxTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kjoe.shortly-app-pcqaxxTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "shortly-app-pcqaxxTests/shortly-app-pcqaxxTests-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/shortly-app-pcqaxx.app/shortly-app-pcqaxx";
+			};
+			name = Release;
+		};
 		11B1307E26E93C2D00A5EA25 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -410,6 +536,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		119F676626EF85E400BD81DB /* Build configuration list for PBXNativeTarget "shortly-app-pcqaxxTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				119F676426EF85E400BD81DB /* Debug */,
+				119F676526EF85E400BD81DB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		11B1306726E93C2C00A5EA25 /* Build configuration list for PBXProject "shortly-app-pcqaxx" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
