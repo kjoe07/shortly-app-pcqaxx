@@ -10,6 +10,12 @@
 		115066FD26EEB75B002EA8F5 /* NetworkLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115066FC26EEB75B002EA8F5 /* NetworkLoader.swift */; };
 		1150670026EED9E6002EA8F5 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 115066FF26EED9E6002EA8F5 /* IQKeyboardManagerSwift */; };
 		117FFC1226EEA06D00ADC9F3 /* ShortUrl.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 117FFC1026EEA06D00ADC9F3 /* ShortUrl.xcdatamodeld */; };
+		1187F90F26F4B9970045A6D9 /* AutenticatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1187F90926F4B9960045A6D9 /* AutenticatorManager.swift */; };
+		1187F91026F4B9970045A6D9 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1187F90A26F4B9960045A6D9 /* Endpoint.swift */; };
+		1187F91126F4B9970045A6D9 /* DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1187F90B26F4B9960045A6D9 /* DataLoader.swift */; };
+		1187F91226F4B9970045A6D9 /* Resquetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1187F90C26F4B9960045A6D9 /* Resquetable.swift */; };
+		1187F91326F4B9970045A6D9 /* NetworkReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1187F90D26F4B9960045A6D9 /* NetworkReachability.swift */; };
+		1187F91426F4B9970045A6D9 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1187F90E26F4B9970045A6D9 /* Services.swift */; };
 		119F676926EF862200BD81DB /* ResultViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119F676826EF862200BD81DB /* ResultViewModelTest.swift */; };
 		119F676C26EFAB6400BD81DB /* ActivityIndicator in Frameworks */ = {isa = PBXBuildFile; productRef = 119F676B26EFAB6400BD81DB /* ActivityIndicator */; };
 		11B1307026E93C2C00A5EA25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B1306F26E93C2C00A5EA25 /* AppDelegate.swift */; };
@@ -40,6 +46,12 @@
 /* Begin PBXFileReference section */
 		115066FC26EEB75B002EA8F5 /* NetworkLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLoader.swift; sourceTree = "<group>"; };
 		117FFC1126EEA06D00ADC9F3 /* ShortUrl.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ShortUrl.xcdatamodel; sourceTree = "<group>"; };
+		1187F90926F4B9960045A6D9 /* AutenticatorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutenticatorManager.swift; sourceTree = "<group>"; };
+		1187F90A26F4B9960045A6D9 /* Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		1187F90B26F4B9960045A6D9 /* DataLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataLoader.swift; sourceTree = "<group>"; };
+		1187F90C26F4B9960045A6D9 /* Resquetable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resquetable.swift; sourceTree = "<group>"; };
+		1187F90D26F4B9960045A6D9 /* NetworkReachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkReachability.swift; sourceTree = "<group>"; };
+		1187F90E26F4B9970045A6D9 /* Services.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
 		119F675D26EF85E400BD81DB /* shortly-app-pcqaxxTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "shortly-app-pcqaxxTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		119F676126EF85E400BD81DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		119F676726EF862200BD81DB /* shortly-app-pcqaxxTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "shortly-app-pcqaxxTests-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -103,6 +115,12 @@
 			isa = PBXGroup;
 			children = (
 				115066FC26EEB75B002EA8F5 /* NetworkLoader.swift */,
+				1187F90926F4B9960045A6D9 /* AutenticatorManager.swift */,
+				1187F90B26F4B9960045A6D9 /* DataLoader.swift */,
+				1187F90A26F4B9960045A6D9 /* Endpoint.swift */,
+				1187F90D26F4B9960045A6D9 /* NetworkReachability.swift */,
+				1187F90C26F4B9960045A6D9 /* Resquetable.swift */,
+				1187F90E26F4B9970045A6D9 /* Services.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -342,9 +360,15 @@
 				11B1309326EA4FFE00A5EA25 /* ResultViewModel.swift in Sources */,
 				117FFC1226EEA06D00ADC9F3 /* ShortUrl.xcdatamodeld in Sources */,
 				11B1308F26E95A8100A5EA25 /* ResultsTableViewCell.swift in Sources */,
+				1187F91226F4B9970045A6D9 /* Resquetable.swift in Sources */,
+				1187F90F26F4B9970045A6D9 /* AutenticatorManager.swift in Sources */,
 				11B1308D26E955A000A5EA25 /* ResultView.swift in Sources */,
+				1187F91126F4B9970045A6D9 /* DataLoader.swift in Sources */,
 				11B1307226E93C2C00A5EA25 /* SceneDelegate.swift in Sources */,
+				1187F91026F4B9970045A6D9 /* Endpoint.swift in Sources */,
+				1187F91426F4B9970045A6D9 /* Services.swift in Sources */,
 				11B1308B26E94FC300A5EA25 /* welcomeView.swift in Sources */,
+				1187F91326F4B9970045A6D9 /* NetworkReachability.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

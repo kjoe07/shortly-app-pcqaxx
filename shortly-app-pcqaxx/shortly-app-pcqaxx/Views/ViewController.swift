@@ -74,7 +74,7 @@ class ViewController: UIViewController {
         welcomeView.bottomAnchor.constraint(equalTo: backgroundView.topAnchor).isActive = true
         welcomeView.setup()
         setupResultView()
-        viewModel = ResultViewModel(networkLoader: NetworkLoader(session: URLSession.shared))
+        viewModel = ResultViewModel(dataLoader: RemoteDataService(loader: NetworkLoader(session: URLSession.shared)))
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateResultView) , name: Notification.Name.init("DataUpdated"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.invalidCall(notification:)) , name: Notification.Name.init("InvalidCall"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.NetworkError) , name: Notification.Name.init("NetworkError"), object: nil)

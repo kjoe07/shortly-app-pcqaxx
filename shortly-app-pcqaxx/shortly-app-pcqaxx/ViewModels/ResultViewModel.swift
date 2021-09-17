@@ -9,15 +9,14 @@ import Foundation
 import CoreData
 class ResultViewModel {
     private var results: [ShortUrl] = []
-    private var networkLoader: NetworkLoader
-    internal let newUrlString = "https://api.shrtco.de/v2/shorten?url="
+    private var dataLoader: Services
     private var shouldUpdate = false
     private lazy var persistentContainer: NSPersistentContainer = {
         NSPersistentContainer(name: "ShortUrl")
     }()
     
-    init(networkLoader: NetworkLoader) {
-        self.networkLoader = networkLoader
+    init(dataLoader: Services) {
+        self.dataLoader = dataLoader
         NotificationCenter.default.addObserver(forName: .NSManagedObjectContextDidSave, object: persistentContainer.viewContext, queue: .main) { [weak self] _ in
             self?.fetchLinks()
         }
@@ -31,36 +30,19 @@ class ResultViewModel {
     }
     
     func shortURL(string: String) {
-        do {
-            let fullURlString = "\(newUrlString)\(string)"
-            let request = try createURLRequest(string: fullURlString)
-            networkLoader.loadData(request: request, completion: {[weak self] result in
-                switch result {
-                case .success(let data):
-                    if data.error == nil {
-                        guard let resultData = data.result else { return }
-                        self?.shouldUpdate = true
-                        self?.saveURL(shortenUrl: resultData)
-                    }else {
-                        NotificationCenter.default.post(name: Notification.Name.init("InvalidCall"), object: result)
-                    }
-                case .failure(let error):
-                    NotificationCenter.default.post(name: Notification.Name.init("NetworkError"), object: error)
-                    debugPrint(error.localizedDescription)
-                }
-            })
-        }catch {
-            NotificationCenter.default.post(name: Notification.Name.init("invalidURL"), object: nil)
-        }
-    }
-    
-    func createURLRequest(string: String) throws  -> URLRequest {
-        guard let url = URL(string: string) else {
-            fatalError("invalid URL")
-        }
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        return request
+        let endPoint = HomeEndpoint(method: .get, path: "/v2/shorten", queryItems: [URLQueryItem(name: "url", value: string)], headers: nil, params: nil)//fullURlString = "\(newUrlString)\(string)"
+        _ = dataLoader.getData(endPoint: endPoint, completion: {[weak self] (result: Result<ShortenResponse,Error>) in
+            guard let self = self else {return}
+            switch result {
+            case .success(let data):
+                guard let resultData = data.result else {return}
+                self.shouldUpdate = true
+                self.saveURL(shortenUrl: resultData)
+            case .failure(let error):
+                NotificationCenter.default.post(name: Notification.Name.init("NetworkError"), object: error)
+                debugPrint(error.localizedDescription)
+            }
+        })
     }
     
     func saveURL(shortenUrl: ShortenResult) {
@@ -87,7 +69,6 @@ class ResultViewModel {
         persistentContainer.viewContext.perform { [weak self] in
             guard let self = self else {return}
             do {
-                print("fetch done")
                 self.results = try fetchRequest.execute()
                 if self.shouldUpdate {
                     NotificationCenter.default.post(name: Notification.Name.init("DataUpdated"), object: nil)
